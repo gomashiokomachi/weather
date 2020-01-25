@@ -6,7 +6,7 @@
         weather:about
       </h1>
       <h2 class="subtitle">
-        about page
+        weather about page
       </h2>
       <div class="links">
         <a
