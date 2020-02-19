@@ -31,8 +31,8 @@ export default {
 
 <style>
     .container{
-        background: url("/bg.png") no-repeat;
-        padding-bottom: calc(100%*2000/1500);
+        background: url("/bg.png") 0 0 no-repeat;
+        padding-bottom: calc(100%*1500/2000);
         background-size: 100% auto;
     }
 </style>
