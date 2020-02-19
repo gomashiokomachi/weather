@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div v-if="weatherItem">{{weatherItem}}</div>
-    <figure class="bg"><img src="/bg.png" /></figure>
     <Info />
   </div>
 </template>
@@ -31,14 +30,9 @@ export default {
 </script>
 
 <style>
-.bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    & img {
-        width: 100%;
-        display: block;
+    .container{
+        background: url("/bg.png") no-repeat;
+        padding-bottom: calc(100%*2000/1500);
+        background-size: 100% auto;
     }
-}
 </style>
