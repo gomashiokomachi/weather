@@ -1,6 +1,5 @@
 <template>
   <div>
-   <Header />
     <main>
     <nuxt />
     </main>
@@ -33,7 +32,7 @@ html {
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+  padding: 0;
   margin: 0;
 }
 
