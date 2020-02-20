@@ -33,6 +33,7 @@ export default {
     .container{
         background: url("/bg.png") 0 0 no-repeat;
         padding-bottom: calc(100%*1500/2000);
-        background-size: 100% auto;
+        background-size: contain;
+        position: relative;
     }
 </style>
