@@ -56,19 +56,30 @@ export default {
     flex-direction: column;
     flex-wrap: wrap;
     background: white;
-    width: 400px;
+    width: 360px;
     padding: 10px 10px 0;
+    margin: auto;
     position: absolute;
-    top: 100px;
     left: 0;
     right: 0;
-    margin: auto;
-    z-index: 10;
+    bottom: calc(56%*1500/2000);
+    &::after{
+        content: '';
+        display: inline-block;
+        width: 120px;
+        height: 120px;
+        background-image: url(/info.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: -66px;
+        right: -120px;
+    }
 }
 .infoTitle{
     order: 2;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
 }
 .infoDateTime{
     order: 1;
@@ -80,22 +91,22 @@ export default {
 .infoList{
     order: 3;
     list-style: none;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 .infoListItem{
     display: flex;
-    padding: 20px;
+    padding: 16px;
     border-top: 1px #333 solid;
-    line-height: 50px;
+    line-height: 46px;
     font-size: 24px;
     &::before{
         content: '';
         display: block;
         background: pink;
-        width: 50px;
-        height: 50px;
+        width: 46px;
+        height: 46px;
         border-radius: 50%;
-        margin-right: 10px;
+        margin-right: 16px;
     }
 }
 </style>
