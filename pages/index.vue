@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="weatherItem">{{weatherItem}}</div>
+    <div v-if="weatherItem" class="weatherItem">{{weatherItem}}</div>
     <Info />
   </div>
 </template>
@@ -35,5 +35,8 @@ export default {
         padding-bottom: calc(100%*1500/2000);
         background-size: contain;
         position: relative;
+    }
+    .weatherItem{
+        display: none;
     }
 </style>
