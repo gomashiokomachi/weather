@@ -56,24 +56,24 @@ export default {
     flex-direction: column;
     flex-wrap: wrap;
     background: white;
-    width: 30%;
+    width: 28%;
     padding: 1% 1% 0;
     margin: auto;
     position: absolute;
     left: 0;
     right: 0;
-    bottom: calc(56%*1500/2000);
+    bottom: calc(46%*1500/2000);
     &::after{
         content: '';
         display: inline-block;
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         background-image: url(/info.png);
         background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
-        bottom: -66px;
-        right: -120px;
+        bottom: -56px;
+        right: -100px;
     }
 }
 .infoTitle{
@@ -109,4 +109,31 @@ export default {
         margin-right: 16px;
     }
 }
+    @media screen and (min-width:1375px){
+        .infoArea::after{
+            width: 120px;
+            height: 120px;
+            bottom: -66px;
+            right: -120px;
+        }
+        .infoTitle{
+            font-size: 24px;
+        }
+        .infoDateTime{
+            font-size: 20px;
+        }
+        .infoList{
+            margin-top: 20px;
+        }
+        .infoListItem{
+            padding: 20px;
+            line-height: 50px;
+            font-size: 28px;
+            &::before{
+                width: 50px;
+                height: 50px;
+                margin-right: 20px;
+            }
+        }
+    }
 </style>
