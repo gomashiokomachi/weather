@@ -56,8 +56,8 @@ export default {
     flex-direction: column;
     flex-wrap: wrap;
     background: white;
-    width: 360px;
-    padding: 10px 10px 0;
+    width: 30%;
+    padding: 1% 1% 0;
     margin: auto;
     position: absolute;
     left: 0;
