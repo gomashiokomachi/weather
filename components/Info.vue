@@ -22,29 +22,7 @@
 import GnavItem from '~/components/GnavItem.vue'
 
 export default {
-    data(){
-        return{
-            globalNavItems:[{
-                    link: '/',
-                    label: 'トップ',
-                    name: 'index'
-                },
-                {
-                    link: '/about',
-                    label: 'このサイトについて',
-                    name: 'about'
-                },
-                {
-                    link: '/profile',
-                    label: 'プロフィール',
-                    name: 'profile'
-                }
-            ]
-        }
-    },
-    components: {
-        GnavItem
-    },
+    
 }
 
 </script>
