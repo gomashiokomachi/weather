@@ -42,6 +42,13 @@ export default {
     .weatherItem{
         display: none;
     }
+    @media screen and (min-width:1200px){
+        .container{
+            width: 1200px;
+            padding-bottom: 900px;
+            margin: 0 auto;
+        }
+    }
     @media screen and (max-width:768px){
         .container{
             padding-bottom: calc(140%*1500/2000);
