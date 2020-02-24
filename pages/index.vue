@@ -38,6 +38,16 @@ export default {
         padding-bottom: calc(100%*1500/2000);
         background-size: contain;
         position: relative;
+        &::before{
+            content: '';
+            background: url("/bbg.jpg");
+            width: 100vw;
+            height: 100vh;
+            margin-left: calc( ( ( 100% - 100vw ) / 2 ) );
+            margin-right: calc( ( ( 100% - 100vw ) / 2 ) );
+            position: absolute;
+            z-index: -10;
+        }
     }
     .weatherItem{
         display: none;
