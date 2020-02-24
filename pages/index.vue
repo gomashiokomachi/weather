@@ -2,17 +2,20 @@
   <div class="container">
     <div v-if="weatherItem" class="weatherItem">{{weatherItem}}</div>
     <Info />
+    <Girl />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
 import Info from '~/components/Info.vue'
+import Girl from '~/components/Girl.vue'
 
 export default {
-  components: {
-    Info
-  },
+    components: {
+        Info,
+        Girl
+    },
     computed: {
     ...mapState({
             weatherItem: state => state.api.weatherItem
