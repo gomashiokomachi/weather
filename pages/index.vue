@@ -39,4 +39,11 @@ export default {
     .weatherItem{
         display: none;
     }
+    @media screen and (max-width:768px){
+        .container{
+            padding-bottom: calc(140%*1500/2000);
+            background-size: cover;
+            background-position: right top;
+        }
+    }
 </style>
