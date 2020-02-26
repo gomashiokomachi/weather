@@ -66,6 +66,7 @@ export default {
         bottom: -56px;
         right: -100px;
     }
+    z-index: 10;
 }
 .infoTitle{
     order: 2;
@@ -162,10 +163,33 @@ export default {
     }
     @media screen and (max-width:768px){
         .infoArea{
-            left: 50px;
+            left: 6%;
             right: auto;
+            top: calc(12%*1500/2000);
+            bottom: auto;
             &::after{
                 display: none;
+            }
+        }
+    }
+    @media screen and (max-width:500px){
+        .infoArea{
+            width: 160px;
+        }
+        .infoTitle{
+            font-size: 12px;
+        }
+        .infoList{
+            margin-top: 8px;
+        }
+        .infoListItem{
+            padding: 8px;
+            line-height: 20px;
+            font-size: 14px;
+            &::before{
+                width: 20px;
+                height: 20px;
+                margin-right: 8px;
             }
         }
     }
