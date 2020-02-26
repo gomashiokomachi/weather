@@ -53,7 +53,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: calc(45%*1500/2000);
+    bottom: calc(40%*1500/2000);
     &::after{
         content: '';
         display: inline-block;
