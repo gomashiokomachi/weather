@@ -6,10 +6,11 @@
         <li class="infoDate">日付</li>
         <li class="infoTime">時間</li>
     </ul>
-    <ul class="infoList">
-        <li class="infoListItem">天気</li>
-        <li class="infoListItem">風量</li>
-        <li class="infoListItem">湿度</li>
+    <ul v-if="weatherItem" class="infoList">
+        <li class="infoListItem">天気{{weatherItem.weather[0].main}}</li>
+        <li class="infoListItem">温度{{weatherItem.main.temp}}</li>
+        <li class="infoListItem">湿度{{weatherItem.main.humidity}}</li>
+        <li class="infoListItem">風速{{weatherItem.wind.speed}}</li>
         <li class="infoListItem">アイス</li>
         <li class="infoListItem">もっと詳しく！</li>
     </ul>
@@ -19,10 +20,22 @@
 
 <script>
 
-import GnavItem from '~/components/GnavItem.vue'
+import { mapActions, mapState } from 'vuex'
 
 export default {
-    
+    computed: {
+    ...mapState({
+            weatherItem: state => state.api.weatherItem
+        })
+    },
+    mounted() {
+        this.getWeather()
+    },
+    methods: {
+    ...mapActions({
+            getWeather: 'api/getWeather'
+        })
+    }
 }
 
 </script>
