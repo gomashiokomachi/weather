@@ -8,9 +8,9 @@
     </ul>
     <ul v-if="weatherItem" class="infoList">
         <li class="infoListItem">天気{{weatherItem.weather[0].main}}</li>
-        <li class="infoListItem">温度{{weatherItem.main.temp}}</li>
-        <li class="infoListItem">湿度{{weatherItem.main.humidity}}</li>
-        <li class="infoListItem">風速{{weatherItem.wind.speed}}</li>
+        <li class="infoListItem">{{TEMP_MESSAGE}}</li>
+        <li class="infoListItem">{{HUMIDITY_MESSAGE}}</li>
+        <li class="infoListItem">{{WIND_MESSAGE}}</li>
         <li class="infoListItem">アイス</li>
         <li class="infoListItem">もっと詳しく！</li>
     </ul>
@@ -23,10 +23,42 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
-    computed: {
-    ...mapState({
-            weatherItem: state => state.api.weatherItem
-        })
+    computed: { //weatherItemが変わったら実行される
+        TEMP_MESSAGE() {
+            const temp = this.weatherItem && this.weatherItem.main.temp
+            if(temp > 301.15) {
+                return '暑い'
+            } else if(temp > 296.15) {
+                return 'ちょうど良い'
+            } else if(temp > 288.15) {
+                return '肌寒い'
+            } else {
+                return '寒い'
+            }
+        },
+        HUMIDITY_MESSAGE() {
+            const humidity = this.weatherItem && this.weatherItem.main.humidity
+            if(humidity > 70) {
+                return '湿度高い'
+            } else if(humidity > 40) {
+                return '湿度普通'
+            } else {
+                return '湿度低い'
+            }
+        },
+        WIND_MESSAGE() {
+            const speed = this.weatherItem && this.weatherItem.wind.speed
+            if(speed > 10) {
+                return '風強い！'
+            } else if(speed > 3) {
+                return '風普通'
+            } else {
+                return '風弱い'
+            }
+        },
+        ...mapState({
+              weatherItem: state => state.api.weatherItem
+          })
     },
     mounted() {
         this.getWeather()
