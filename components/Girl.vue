@@ -116,7 +116,7 @@
         width: 24%;
         position: absolute;
         right: 4%;
-        bottom: calc(30%*1500/2000);
+        bottom: calc(28%*1500/2000);
     }
 
     @media screen and (max-width:768px){
