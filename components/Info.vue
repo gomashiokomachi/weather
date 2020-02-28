@@ -2,10 +2,7 @@
 
 <section class="infoArea">
     <h1 class="infoTitle">天気</h1>
-    <ul class="infoDateTime">
-        <li class="infoDate">日付</li>
-        <li class="infoTime">時間</li>
-    </ul>
+    <p class="infoDate">日付</p>
     <ul v-if="weatherItem" class="infoList">
         <li class="infoListItem">天気{{weatherItem.weather[0].main}}</li>
         <li class="infoListItem">{{TEMP_MESSAGE}}</li>
@@ -105,11 +102,10 @@ export default {
     text-align: center;
     font-size: 18px;
 }
-.infoDateTime{
+.infoDate{
     order: 1;
     display: flex;
     justify-content: flex-end;
-    list-style: none;
     font-size: 14px;
 }
 .infoList{
@@ -146,7 +142,7 @@ export default {
         .infoTitle{
             font-size: 20px;
         }
-        .infoDateTime{
+        .infoDate{
             font-size: 16px;
         }
         .infoList{
@@ -176,7 +172,7 @@ export default {
         .infoTitle{
             font-size: 14px;
         }
-        .infoDateTime{
+        .infoDate{
             font-size: 10px;
         }
         .infoList{
