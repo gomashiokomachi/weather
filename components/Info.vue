@@ -4,7 +4,7 @@
     <h1 class="infoTitle">天気</h1>
     <p class="infoDate">日付</p>
     <ul v-if="weatherItem" class="infoList">
-        <li class="infoListItem">天気{{weatherItem.weather[0].main}}</li>
+        <li class="infoListItem">{{MAIN_MESSAGE}}</li>
         <li class="infoListItem">{{TEMP_MESSAGE}}</li>
         <li class="infoListItem">{{HUMIDITY_MESSAGE}}</li>
         <li class="infoListItem">{{WIND_MESSAGE}}</li>
@@ -21,6 +21,20 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
     computed: { //weatherItemが変わったら実行される
+        MAIN_MESSAGE() {
+            let main = this.weatherItem && this.weatherItem.weather[0].main
+            if(main === 'Clear') {
+                return 'はれ'
+            } else if(main === 'Clouds') {
+                return 'くもり'
+            } else if(main === 'Rain') {
+                return 'あめ'
+            } else if(main === 'Snow') {
+                return 'ゆき'
+            } else {
+                return main
+            }
+        },
         TEMP_MESSAGE() {
             const temp = this.weatherItem && this.weatherItem.main.temp
             if(temp > 301.15) {
