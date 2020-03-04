@@ -21,7 +21,7 @@ import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
 
 export default {
-    computed: { //weatherItemが変わったら実行される
+    computed: {
         DATE() {
             let date = moment()
             return date.format('M月D日')
