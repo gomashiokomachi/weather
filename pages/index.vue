@@ -2,6 +2,7 @@
   <div class="container">
     <div v-if="weatherItem" class="weatherItem">{{weatherItem}}</div>
     <Info />
+    <Window />
     <Girl />
   </div>
 </template>
@@ -9,11 +10,13 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Info from '~/components/Info.vue'
+import Window from '~/components/Window.vue'
 import Girl from '~/components/Girl.vue'
 
 export default {
     components: {
         Info,
+        Window,
         Girl
     },
     computed: {
