@@ -2,7 +2,7 @@
 
 <section class="infoArea">
     <h1 class="infoTitle">天気</h1>
-    <p class="infoDate">日付</p>
+    <p class="infoDate">{{DATE}}</p>
     <ul v-if="weatherItem" class="infoList">
         <li class="infoListItem">{{MAIN_MESSAGE}}</li>
         <li class="infoListItem">{{TEMP_MESSAGE}}</li>
@@ -18,9 +18,14 @@
 <script>
 
 import { mapActions, mapState } from 'vuex'
+import moment from 'moment'
 
 export default {
     computed: { //weatherItemが変わったら実行される
+        DATE() {
+            let date = moment()
+            return date.format('M月D日')
+        },
         MAIN_MESSAGE() {
             let main = this.weatherItem && this.weatherItem.weather[0].main
             if(main === 'Clear') {
