@@ -22,10 +22,7 @@ import moment from 'moment'
 
 export default {
     computed: {
-        DATE() {
-            let date = moment()
-            return date.format('M月D日')
-        },
+        DATE: () => moment().format('M月D日'),
         MAIN_MESSAGE() {
             let main = this.weatherItem && this.weatherItem.weather[0].main
             if(main === 'Clear') {
