@@ -48,7 +48,17 @@
 		c0,0-0.131,2.999-3.653,2.869s-9.782-3.428-7.435-15.895C70.219,215.722,72.288,208.452,76.537,208.9z"/>
 </g>
 <g id="head">
-	<path id="hair" fill="#C7B299" stroke="#C7B299" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+
+
+
+<!--ここからhairArea-->
+    <path class="goodHair" v-bind:class="HUMIDITY_HAIR" id="hair_1_" fill="#C7B299" stroke="#C7B299" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M175.821,36.167c0,0-4.832-17-45.493-14.5S77.833,44.008,75.5,47.504c0,0-13.796,9.869-9,42.935c0,0,1.25,12.444,0.625,25.94
+		s4.556,29.496,19.715,32.871c0,0-0.444-3.625,1.92-5.25c0,0,2.793,1.339,5.628,0.692c0,0,1.487-1.317,1.737-2.567
+		c0,0,9.544,3.07,17.084-2.777l32.2-3.222c0,0-0.532,3.749,1.342,5.124c0,0,4.925,0.375,10.837-2.5c0,0-0.673,2.627,0,4.016
+		c0,0,8.619-0.074,17.203-5.795c0,0,2.459,6.552,0.584,10.604c0,0,5.975-3.47,8.05-8.834c0,0,0.675,3.641,0,6.263
+		c0,0,21.521-8.618,17.45-53.223C196.805,47.176,189.268,40.583,175.821,36.167z"/>
+	<path class="badHair" v-bind:class="HUMIDITY_HAIR" id="hair" fill="#C7B299" stroke="#C7B299" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M177.611,34.614c0,0,0.392-13.16-22.138-12.322c-22.53,0.838-23.033-9.895-19.679-13.417c0,0-6.149,4.36-4.248,10.566
 		c0,0-33.601-2.013-57.024,27.337c0,0-9.839,11.851-18.224,3.409c0,0-0.093,10.511,10.099,13.865c0,0-8.422,9.441-6.913,35.412
 		c0,0,2.348,11.473-4.193,15.871c0,0,1.845,2.537,5.702,1.79c3.857-0.747,1.973,25.314,20.666,28.584c0,0-1.689-2.606-1.098-4.733
@@ -57,16 +67,34 @@
 		c-5.072,3.391,10.124-1.527,19.191-10.996c0,0,0.967,6.308,4.921,6.182c0,0,7.619-6.293,13.079-19.04c0,0,3.273,0.324,5.702-2.273
 		c2.43-2.597-10.255-5.406-3.689-9.056c5.199-2.891,5.199-5.367,5.199-5.367s-13.677-5.236-12.396-17.442
 		c0,0,8.426-0.671,9.992-6.708c0,0-13.175-3.522-13.938-16.771C199.451,60.698,196.116,32.848,177.611,34.614z"/>
+<!--hairAreaここまで-->
+
+
+
 	<path id="face" fill="#FFF4F0" stroke="#FFF4F0" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M173.586,39.454c0,0-23.704-19.842-71.557-3.1c-47.856,16.743-29.098,70.221-25.047,71.991c0,0-6.038,32.185,37.568,33.079
 		c43.607,0.896,57.471-9.615,60.377-14.534c0,0,9.259,1.006,10.946-12.075c0,0,0.308-3.467-2.077-5.144
 		C183.797,109.67,209.03,72.326,173.586,39.454z"/>
-	<path id="bangs" fill="#C7B299" stroke="#C7B299" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+
+
+
+<!--ここからbangsArea-->
+    <path class="goodHair" v-bind:class="HUMIDITY_HAIR" id="bangs_1_" fill="#C7B299" stroke="#C7B299" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M70.273,65.997c9.363-30.037,43.719-36.034,43.719-36.034c47.182-10.385,64.773,8.969,64.773,8.969
+		c35.368,34.476,6.359,84.443,6.359,84.443S178.699,136.146,172.25,137c0,0,3.625-5.75-6.27-33.59c0,0-9.299,0.398-20.314-20.41
+		c0,0,0.232,6.667,4.334,11.084c0,0-13,0.833-25.166-12.584c0,0,1.083,4.648,5.916,9.25c0,0-11.916,2-19.76-12.391
+		c0,0-1.074,5.308,3.844,10.141c0,0-21.605,3.785-25.176-20.333c0,0-12.158,13.833-10.43,24.509c0,0-4.609-2.266-4.481-12.971
+		c0,0-0.226,12.662,1.253,17.799c0,0-6.934-4.766-7.613-14.254C67.773,74.697,70.273,65.997,70.273,65.997z"/>
+	<path class="badHair" v-bind:class="HUMIDITY_HAIR" id="bangs" fill="#C7B299" stroke="#C7B299" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M70.274,65.997c0,0-7.884,23.017,9.363,24.96c0,0-9.194-9.184-3.1-17.961c0,0-2.685,12.412,8.496,14.313
 		c0,0-4.319-6.143,2.61-15.207c0,0,7.733-10.398,13.938-4.025c0,0,13.417-10.845,20.684,18.561c0,0,4.138-5.692,3.58-13.244
 		c0,0,10.872,2.027,3.814,14.287c0,0,12.36-1.927,10.533-14.287c0,0,7.79,23.179,27.636,16.002c0,0,7.155,22.51-4.25,17.367
 		c0,0,0.95,4.952,8.386,1.581c0,0,8.554,7.513,14.145,6.991c0,0,28.025-41.928-7.343-76.404c0,0-17.592-19.354-64.774-8.969
 		C113.992,29.963,79.637,35.96,70.274,65.997z"/>
+<!--bangsAreaここまで-->
+
+
+
 	<path id="rightEye" fill="#998675" stroke="#998675" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M103.22,102.405c-2.807-1.87-8.154-4.311-14.684-1.823c0,0-2.379,4.521-0.215,8.286c2.162,3.766,8.51,3.114,10.296,2.366
 		C103.426,109.222,103.22,102.405,103.22,102.405z"/>
@@ -99,14 +127,50 @@
 		
 			<line id="llCheek" fill="none" stroke="#FAB6B7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="159.723" y1="117.272" x2="160.82" y2="119.062"/>
 	</g>
-	<path id="mouth" fill="none" stroke="#706861" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+
+
+
+<!--ここからmouthArea-->
+	<path class="goodHair" v-bind:class="HUMIDITY_HAIR" id="mouth_1_" fill="none" stroke="#706861" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M131.879,131.667c0,0-3.712,2-8.545,2.5"/>
+	<path class="badHair" v-bind:class="HUMIDITY_HAIR" id="mouth" fill="none" stroke="#706861" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M134.733,132.05c0,0-6.654-0.465-10.176,4.007"/>
+<!--mouthAreaここまで-->
+
+
+
 </g>
 </svg>
 
 </template>
 
 <script>
+
+import { mapActions, mapState } from 'vuex'
+
+export default {
+    computed: {
+        HUMIDITY_HAIR() {
+            const humidity = this.weatherItem && this.weatherItem.main.humidity
+            if(humidity > 70) {
+                return 'highHumidity'
+            } else {
+                return
+            }
+        },
+        ...mapState({
+              weatherItem: state => state.api.weatherItem
+          })
+    },
+    mounted() {
+        this.getWeather()
+    },
+    methods: {
+    ...mapActions({
+            getWeather: 'api/getWeather'
+        })
+    }
+}
 
 </script>
 
@@ -117,6 +181,12 @@
         position: absolute;
         right: 4%;
         bottom: calc(28%*1500/2000);
+    }
+    .badHair, .goodHair.highHumidity{
+        display: none;
+    }
+    .badHair.highHumidity{
+        display: block;
     }
 
     @media screen and (max-width:768px){
