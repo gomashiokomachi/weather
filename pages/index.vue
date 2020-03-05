@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-    <div v-if="weatherItem" class="weatherItem">{{weatherItem}}</div>
+
+<div class="container">
     <Info />
     <Window />
     <Girl />
-  </div>
+</div>
+
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+
 import Info from '~/components/Info.vue'
 import Window from '~/components/Window.vue'
 import Girl from '~/components/Girl.vue'
@@ -18,24 +19,12 @@ export default {
         Info,
         Window,
         Girl
-    },
-    computed: {
-    ...mapState({
-            weatherItem: state => state.api.weatherItem
-        })
-    },
-    mounted() {
-        this.getWeather()
-    },
-    methods: {
-    ...mapActions({
-            getWeather: 'api/getWeather'
-        })
     }
 }
+
 </script>
 
-<style>
+<style scoped>
     .container{
         background: url("/bg.png") 0 0 no-repeat;
         padding-bottom: calc(100%*1500/2000);
@@ -51,9 +40,6 @@ export default {
             position: absolute;
             z-index: -10;
         }
-    }
-    .weatherItem{
-        display: none;
     }
     @media screen and (min-width:1200px){
         .container{
