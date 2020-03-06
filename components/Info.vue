@@ -1,7 +1,7 @@
 <template>
 
 <section class="infoArea">
-    <h1 class="infoTitle">天気</h1>
+    <h2 class="infoTitle">天気</h2>
     <p class="infoDate">{{DATE}}</p>
     <ul v-if="weatherItem" class="infoList">
         <li class="infoListItem">{{MAIN_MESSAGE}}</li>
@@ -39,11 +39,11 @@ export default {
         },
         TEMP_MESSAGE() {
             const temp = this.weatherItem && this.weatherItem.main.temp
-            if(temp > 301.15) {
+            if(temp > 28) {
                 return '暑い'
-            } else if(temp > 296.15) {
+            } else if(temp > 23) {
                 return 'ちょうど良い'
-            } else if(temp > 288.15) {
+            } else if(temp > 15) {
                 return '肌寒い'
             } else {
                 return '寒い'
@@ -101,7 +101,7 @@ export default {
     bottom: calc(40%*1500/2000);
     &::after{
         content: '';
-        display: inline-block;
+        display: block;
         width: 100px;
         height: 100px;
         background-image: url(/info.png);
