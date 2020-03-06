@@ -2,7 +2,6 @@
 
 <div class="container">
     <Nav />
-    <DetailInfoBg />
     <DetailInfo />
     <FiveDaysWeather />
 </div>
@@ -12,14 +11,12 @@
 <script>
 
 import Nav from '~/components/Nav.vue'
-import DetailInfoBg from '~/components/DetailInfoBg.vue'
 import DetailInfo from '~/components/DetailInfo.vue'
 import FiveDaysWeather from '~/components/FiveDaysWeather.vue'
 
 export default {
     components: {
         Nav,
-        DetailInfoBg,
         DetailInfo,
         FiveDaysWeather
     }
@@ -30,6 +27,7 @@ export default {
 <style scoped>
 
     .container{
+        display: flex;
         background: url("/bbg.jpg");
     }
 
