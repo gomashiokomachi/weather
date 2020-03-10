@@ -1,6 +1,16 @@
 <template>
 
-
+<section class="forecastArea">
+    <h2 class="forecastTitle">5日間予報</h2>
+    <ol class="forecastList">
+        <li v-for="listArray in FORECAST_LIST" class="forecastItem">
+            <span class="forecastDate"># {{FORECAST_DATE[ listArray ]}}</span>
+            <fa v-if="MAIN_FORECAST[ listArray ] === 'clear'" class="forecastIcon" :icon="faSun" />
+            <fa v-if="MAIN_FORECAST[ listArray ] === 'clouds'" class="forecastIcon" :icon="faCloud" />
+            <fa v-if="MAIN_FORECAST[ listArray ] === 'rain'" class="forecastIcon" :icon="faUmbrella" />
+        </li>
+    </ol>
+</section>
 
 </template>
 
@@ -8,66 +18,51 @@
 
 import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
+import { faSun } from '@fortawesome/free-solid-svg-icons'
+import { faCloud } from '@fortawesome/free-solid-svg-icons'
+import { faUmbrella } from '@fortawesome/free-solid-svg-icons'
 
 export default {
     computed: {
-        DATE: () => moment().format('M月D日'),
-        MAIN_MESSAGE() {
-            let main = this.weatherItem && this.weatherItem.weather[0].main
-            if(main === 'Clear') {
-                return 'はれ'
-            } else if(main === 'Clouds') {
-                return 'くもり'
-            } else if(main === 'Rain') {
-                return 'あめ'
-            } else if(main === 'Snow') {
-                return 'ゆき'
-            } else {
-                return main
-            }
+        FORECAST_DATE: () => {
+            moment.locale('ja')
+            const dateArray = []
+            for (let i=0; i<5; i++) {
+                dateArray.push(moment().add(1+i, 'days').format('M月D日'))
+            } return dateArray
         },
-        TEMP_MESSAGE() {
-            const temp = this.weatherItem && this.weatherItem.main.temp
-            if(temp > 301.15) {
-                return '暑い'
-            } else if(temp > 296.15) {
-                return 'ちょうど良い'
-            } else if(temp > 288.15) {
-                return '肌寒い'
-            } else {
-                return '寒い'
-            }
+        MAIN_FORECAST() {
+            const mainArray = []
+            for (let i=0; i<5; i++) {
+                const main = this.forecastItem && this.forecastItem.list[i].weather[0].main
+                if(main === 'Clear') {
+                    mainArray.push('clear')
+                } else if(main === 'Clouds') {
+                    mainArray.push('clouds')
+                } else if(main === 'Rain') {
+                    mainArray.push('rain')
+                } else if(main === 'Snow') {
+                    mainArray.push('snow')
+                }
+            } return mainArray
         },
-        HUMIDITY_MESSAGE() {
-            const humidity = this.weatherItem && this.weatherItem.main.humidity
-            if(humidity > 70) {
-                return '湿度高い'
-            } else if(humidity > 40) {
-                return '湿度普通'
-            } else {
-                return '湿度低い'
-            }
+        FORECAST_LIST: () => {
+            const listArray = [0, 1, 2, 3, 4]
+            return listArray
         },
-        WIND_MESSAGE() {
-            const speed = this.weatherItem && this.weatherItem.wind.speed
-            if(speed > 10) {
-                return '風強い！'
-            } else if(speed > 3) {
-                return '風普通'
-            } else {
-                return '風弱い'
-            }
-        },
+        faSun: () => faSun,
+        faCloud: () => faCloud,
+        faUmbrella: () => faUmbrella,
         ...mapState({
-              weatherItem: state => state.api.weatherItem
-          })
+            forecastItem: state => state.api.forecastItem
+        })
     },
     mounted() {
-        this.getWeather()
+        this.getForecast()
     },
     methods: {
-    ...mapActions({
-            getWeather: 'api/getWeather'
+        ...mapActions({
+            getForecast: 'api/getForecast'
         })
     }
 }
@@ -76,154 +71,31 @@ export default {
 
 <style scoped>
 
-.infoArea{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background: white;
-    width: 300px;
-    padding: 10px 10px 0;
-    margin: auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: calc(40%*1500/2000);
-    &::after{
-        content: '';
-        display: inline-block;
-        width: 100px;
-        height: 100px;
-        background-image: url(/info.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: absolute;
-        bottom: -56px;
-        right: -100px;
+    .forecastArea{
+        background: #f3f3f3;
+        border-radius: 10px;
+        padding: 10px 20px 20px;
+        margin: 100px auto auto;
     }
-    z-index: 10;
-}
-.infoTitle{
-    order: 2;
-    text-align: center;
-    font-size: 18px;
-}
-.infoDate{
-    order: 1;
-    display: flex;
-    justify-content: flex-end;
-    font-size: 14px;
-}
-.infoList{
-    order: 3;
-    list-style: none;
-    margin-top: 14px;
-}
-.infoListItem{
-    display: flex;
-    padding: 14px;
-    border-top: 1px #333 solid;
-    line-height: 40px;
-    font-size: 22px;
-    &::before{
-        content: '';
-        display: block;
-        background: pink;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 14px;
+    .forecastTitle{
+        padding: 8px 10px;
+        font-size: 20px;
+        border-bottom: 1px gray solid;
     }
-}
-    @media screen and (min-width:1200px){
-        .infoArea{
-            width: 320px;
-            &::after{
-                width: 120px;
-                height: 120px;
-                bottom: -66px;
-                right: -120px;
-            }
-        }
-        .infoTitle{
-            font-size: 20px;
-        }
-        .infoDate{
-            font-size: 16px;
-        }
-        .infoList{
-            margin-top: 16px;
-        }
-        .infoListItem{
-            padding: 16px;
-            line-height: 42px;
-            font-size: 24px;
-            &::before{
-                width: 42px;
-                height: 42px;
-                margin-right: 16px;
-            }
-        }
+    .forecastList{
+        list-style: none;
     }
-    @media screen and (max-width:1000px){
-        .infoArea{
-            width: 260px;
-            &::after{
-                width: 60px;
-                height: 60px;
-                bottom: -33px;
-                right: -60px;
-            }
-        }
-        .infoTitle{
-            font-size: 14px;
-        }
-        .infoDate{
-            font-size: 10px;
-        }
-        .infoList{
-            margin-top: 10px;
-        }
-        .infoListItem{
-            padding: 10px;
-            line-height: 36px;
-            font-size: 18px;
-            &::before{
-                width: 36px;
-                height: 36px;
-                margin-right: 10px;
-            }
-        }
+    .forecastItem{
+        padding: 10px;
+        border-bottom: 1px gray solid;
     }
-    @media screen and (max-width:768px){
-        .infoArea{
-            left: 6%;
-            right: auto;
-            top: calc(12%*1500/2000);
-            bottom: auto;
-            &::after{
-                display: none;
-            }
-        }
+    .forecastDate{
+        margin-right: 20px;
+        font-size: 18px;
     }
-    @media screen and (max-width:500px){
-        .infoArea{
-            width: 160px;
-        }
-        .infoTitle{
-            font-size: 12px;
-        }
-        .infoList{
-            margin-top: 8px;
-        }
-        .infoListItem{
-            padding: 8px;
-            line-height: 20px;
-            font-size: 14px;
-            &::before{
-                width: 20px;
-                height: 20px;
-                margin-right: 8px;
-            }
-        }
+    .forecastIcon{
+        font-size: 36px;
+        color: #4b4b4b;
     }
+
 </style>
