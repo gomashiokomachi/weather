@@ -10,15 +10,16 @@
 
     <section class="infoArea">
         <h2 class="infoTitle">天気の詳細</h2>
-        <p class="infoDate">{{DATE}}</p>
+        <p class="infoDate">{{DETAIL_DATE}}</p>
         <ul class="infoList">
-            <li class="infoListItem">東京</li>
-            <li class="infoListItem">{{MAIN_INFO}}</li>
-            <li class="infoListItem">{{HUMIDITY_INFO}}%</li>
-            <li class="infoListItem">{{WIND_INFO}}m/s</li>
-            <li class="infoListItem">{{TEMPMIN_INFO}}℃</li>
-            <li class="infoListItem">{{TEMPMAX_INFO}}℃</li>
+            <li class="infoListItem"><fa class="infoIcon" :icon="faMapMarkerAlt" />東京</li>
+            <li class="infoListItem"><fa class="infoIcon" :icon="faSun" />{{MAIN_INFO}}</li>
+            <li class="infoListItem"><fa class="infoIcon" :icon="faTint" />{{HUMIDITY_INFO}}%</li>
+            <li class="infoListItem"><fa class="infoIcon" :icon="faWind" />{{WIND_INFO}}m/s</li>
+            <li class="infoListItem"><span class="infoIcon min">⬇︎</span>{{TEMPMIN_INFO}}℃</li>
+            <li class="infoListItem"><span class="infoIcon max">⬆︎</span>{{TEMPMAX_INFO}}℃</li>
         </ul>
+        <Chart />
     </section>
 
 </div>
@@ -27,12 +28,20 @@
 
 <script>
 
+import Chart from '~/components/Chart.vue'
 import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSun } from '@fortawesome/free-solid-svg-icons'
+import { faTint } from '@fortawesome/free-solid-svg-icons'
+import { faWind } from '@fortawesome/free-solid-svg-icons'
 
 export default {
+    components: {
+        Chart
+    },
     computed: {
-        DATE: () => {
+        DETAIL_DATE: () => {
             moment.locale('ja')
             return moment().format('M月D日 (dd)')
         },
@@ -46,6 +55,8 @@ export default {
                 return '雨'
             } else if(main === 'Snow') {
                 return '雪'
+            } else if(main === 'Mist') {
+                return '霧'
             }
         },
         HUMIDITY_INFO() {
@@ -55,10 +66,10 @@ export default {
             return this.weatherItem && this.weatherItem.wind.speed
         },
         TEMPMIN_INFO() {
-            return this.weatherItem && this.weatherItem.main.temp_min
+            return Math.round(this.weatherItem && this.weatherItem.main.temp_min)
         },
         TEMPMAX_INFO() {
-            return this.weatherItem && this.weatherItem.main.temp_max
+            return Math.round(this.weatherItem && this.weatherItem.main.temp_max)
         },
         TIME: () => {
             let time = new Date()
@@ -83,15 +94,19 @@ export default {
                 return 'snow'
             }
         },
+        faMapMarkerAlt: () => faMapMarkerAlt,
+        faSun: () => faSun,
+        faTint: () => faTint,
+        faWind: () => faWind,
         ...mapState({
-              weatherItem: state => state.api.weatherItem
-          })
+            weatherItem: state => state.api.weatherItem
+        })
     },
     mounted() {
         this.getWeather()
     },
     methods: {
-    ...mapActions({
+        ...mapActions({
             getWeather: 'api/getWeather'
         })
     }
@@ -136,10 +151,20 @@ export default {
     }
     .infoList{
         display: flex;
+        flex-wrap: wrap;
         list-style: none;
+        line-height: 2em;
+        padding: 20px 20px 40px;
+        border-bottom: 1px gray solid;
     }
     .infoListItem{
-        margin-right: 50px;
+        margin-right: 36px;
+        font-size: 18px;
+        & .infoIcon{
+            width: 36px;
+            &.min{color: #6284f7;padding: 8px;}
+            &.max{color: #f76271;padding: 8px;}
+        }
     }
 
     .daytime{
