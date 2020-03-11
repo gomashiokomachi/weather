@@ -2,7 +2,7 @@
 
 <section class="infoArea">
     <h2 class="infoTitle">天気</h2>
-    <p class="infoDate">{{DATE}}</p>
+    <p class="infoDate">{{INFO_DATE}}</p>
     <ul v-if="weatherItem" class="infoList">
         <li class="infoListItem">{{MAIN_MESSAGE}}</li>
         <li class="infoListItem">{{TEMP_MESSAGE}}</li>
@@ -22,7 +22,7 @@ import moment from 'moment'
 
 export default {
     computed: {
-        DATE: () => moment().format('M月D日'),
+        INFO_DATE: () => moment().format('M月D日'),
         MAIN_MESSAGE() {
             let main = this.weatherItem && this.weatherItem.weather[0].main
             if(main === 'Clear') {
@@ -33,6 +33,8 @@ export default {
                 return 'あめ'
             } else if(main === 'Snow') {
                 return 'ゆき'
+            } else if(main === 'Mist') {
+                return 'きり'
             } else {
                 return main
             }
