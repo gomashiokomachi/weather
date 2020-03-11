@@ -34,7 +34,7 @@ export default {
         MAIN_FORECAST() {
             const mainArray = []
             for (let i=0; i<5; i++) {
-                const main = this.forecastItem && this.forecastItem.list[i].weather[0].main
+                const main = this.forecastItem && this.forecastItem.list[2+i*8].weather[0].main
                 if(main === 'Clear') {
                     mainArray.push('clear')
                 } else if(main === 'Clouds') {
