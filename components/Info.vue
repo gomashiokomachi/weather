@@ -2,6 +2,13 @@
 
 <section class="infoArea">
     <h2 class="infoTitle">天気</h2>
+
+<select v-model="selected" @change="fetchWeather">
+  <option v-for="option in options" :value="option.value">
+    {{ option.text }}
+  </option>
+</select>
+
     <p class="infoDate">{{INFO_DATE}}</p>
     <ul v-if="weatherItem" class="infoList">
         <li class="infoListItem">{{MAIN_MESSAGE}}</li>
@@ -21,6 +28,25 @@ import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
 
 export default {
+    data () {
+        return {
+            selected: 'Tokyo',
+            options: [
+                { text: '北海道', value: 'Hokkaido' },
+                { text: '宮城', value: 'Miyagi' },
+                { text: '新潟', value: 'Niigata' },
+                { text: '東京', value: 'Tokyo' },
+                { text: '石川', value: 'Ishikawa' },
+                { text: '愛知', value: 'Aichi' },
+                { text: '大阪', value: 'Osaka' },
+                { text: '広島', value: 'Hiroshima' },
+                { text: '高知', value: 'Kochi' },
+                { text: '福岡', value: 'Fukuoka' },
+                { text: '鹿児島', value: 'Kagoshima' },
+                { text: '沖縄', value: 'Okinawa' }
+            ]
+        }
+    },
     computed: {
         INFO_DATE: () => moment().format('M月D日'),
         MAIN_MESSAGE() {
@@ -72,14 +98,17 @@ export default {
             }
         },
         ...mapState({
-              weatherItem: state => state.api.weatherItem
-          })
+            weatherItem: state => state.api.weatherItem
+        }),
     },
     mounted() {
-        this.getWeather()
+        this.getWeather({ area: this.selected })
     },
     methods: {
-    ...mapActions({
+        fetchWeather(e) {
+            this.getWeather({ area: e.target.value })
+        },
+        ...mapActions({
             getWeather: 'api/getWeather'
         })
     }
@@ -140,10 +169,12 @@ export default {
     &::before{
         content: '';
         display: block;
-        background: pink;
+        background: url(/topimg.png);
+        background-size: contain;
+        background-repeat: no-repeat;
         width: 40px;
         height: 40px;
-        border-radius: 50%;
+        height: 40px;
         margin-right: 14px;
     }
 }
