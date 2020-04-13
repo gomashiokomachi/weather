@@ -94,6 +94,7 @@ export default {
     .forecastDate{
         display: inline-block;
         vertical-align: top;
+        width: 100px;
         font-size: 18px;
     }
     .forecastIcon{

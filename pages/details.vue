@@ -2,7 +2,7 @@
 
 <div class="container">
     <Nav />
-    <DetailInfo />
+    <DetailBg />
     <FiveDaysWeather />
 </div>
 
@@ -11,13 +11,13 @@
 <script>
 
 import Nav from '~/components/Nav.vue'
-import DetailInfo from '~/components/DetailInfo.vue'
+import DetailBg from '~/components/DetailBg.vue'
 import FiveDaysWeather from '~/components/FiveDaysWeather.vue'
 
 export default {
     components: {
         Nav,
-        DetailInfo,
+        DetailBg,
         FiveDaysWeather
     }
 }

@@ -1,40 +1,30 @@
 <template>
 
-<div class="wrapper" :class="TIME">
-
-<!--
-    <div v-if="MAIN_IMG === 'clear'" style="background:red; width:100px; height:100px;"></div>
-    <div v-if="MAIN_IMG === 'clouds'" style="background:gray; width:100px; height:100px;"></div>
-    <div v-if="MAIN_IMG === 'rain'" style="background:blue; width:100px; height:100px;"></div>
--->
-
-    <section class="infoArea">
-        <h2 class="infoTitle">天気の詳細</h2>
-        <p class="infoDate">{{DETAIL_DATE}}</p>
-        <ul class="infoList">
-            <li class="infoListItem"><fa class="infoIcon" :icon="faMapMarkerAlt" />東京</li>
-            <li class="infoListItem"><fa class="infoIcon" :icon="faSun" />{{MAIN_INFO}}</li>
-            <li class="infoListItem"><fa class="infoIcon" :icon="faTint" />{{HUMIDITY_INFO}}%</li>
-            <li class="infoListItem"><fa class="infoIcon" :icon="faWind" />{{WIND_INFO}}m/s</li>
-            <li class="infoListItem"><span class="infoIcon min">⬇︎</span>{{TEMPMIN_INFO}}℃</li>
-            <li class="infoListItem"><span class="infoIcon max">⬆︎</span>{{TEMPMAX_INFO}}℃</li>
-        </ul>
-        <Chart />
-    </section>
-
-</div>
+<section class="infoArea">
+    <h2 class="infoTitle">天気の詳細</h2>
+    <p class="infoDate">{{DETAIL_DATE}}</p>
+    <ul class="infoList">
+        <li class="infoListItem"><fa class="infoIcon" :icon="faMapMarkerAlt" />{{this.weatherItem && this.weatherItem.name}}</li>
+        <li class="infoListItem"><fa class="infoIcon" :icon="faSun" />{{MAIN_INFO}}</li>
+        <li class="infoListItem"><fa class="infoIcon" :icon="faTint" />{{HUMIDITY_INFO}}%</li>
+        <li class="infoListItem"><fa class="infoIcon" :icon="faWind" />{{WIND_INFO}}m/s</li>
+        <li class="infoListItem"><span class="infoIcon min">⬇︎</span>{{TEMPMIN_INFO}}℃</li>
+        <li class="infoListItem"><span class="infoIcon max">⬆︎</span>{{TEMPMAX_INFO}}℃</li>
+    </ul>
+    <Chart />
+</section>
 
 </template>
 
 <script>
 
-import Chart from '~/components/Chart.vue'
 import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
 import { faTint } from '@fortawesome/free-solid-svg-icons'
 import { faWind } from '@fortawesome/free-solid-svg-icons'
+import Chart from '~/components/Chart.vue'
 
 export default {
     components: {
@@ -71,29 +61,6 @@ export default {
         TEMPMAX_INFO() {
             return Math.round(this.weatherItem && this.weatherItem.main.temp_max)
         },
-        TIME: () => {
-            let time = new Date()
-            let hour = time.getHours()
-            if(hour > 17 || hour < 6) {
-                return 'night'
-            } else if(hour > 15) {
-                return 'evening'
-            } else {
-                return 'daytime'
-            }
-        },
-        MAIN_IMG() {
-            let main = this.weatherItem && this.weatherItem.weather[0].main
-            if(main === 'Clear') {
-                return 'clear'
-            } else if(main === 'Clouds') {
-                return 'clouds'
-            } else if(main === 'Rain') {
-                return 'rain'
-            } else if(main === 'Snow') {
-                return 'snow'
-            }
-        },
         faMapMarkerAlt: () => faMapMarkerAlt,
         faSun: () => faSun,
         faTint: () => faTint,
@@ -116,15 +83,11 @@ export default {
 
 <style scoped>
 
-    .wrapper{
-        width: 600px;
-        padding: 200px 0 100px;
-        margin: 0 auto;
-    }
     .infoArea{
         background: white;
-        padding: 20px;
+        padding: 20px 20px 50px;
         position: relative;
+        z-index: 20;
     }
     .infoTitle{
         text-align: center;
@@ -165,16 +128,6 @@ export default {
             &.min{color: #6284f7;padding: 8px;}
             &.max{color: #f76271;padding: 8px;}
         }
-    }
-
-    .daytime{
-        background: #DAF1FF;
-    }
-    .evening{
-        background: #f4a460;
-    }
-    .night{
-        background: #003366;
     }
 
 </style>
