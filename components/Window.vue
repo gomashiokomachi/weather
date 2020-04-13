@@ -44,7 +44,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
 
     .windowArea{
         overflow: hidden;
@@ -82,6 +82,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
+        z-index: 10;
         & span {
             position: absolute;
             width: 1px;

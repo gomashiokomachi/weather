@@ -1,14 +1,14 @@
 <template>
 
 <section class="infoArea">
-    <h2 class="infoTitle">天気</h2>
-
-<select v-model="selected" @change="fetchWeather">
-  <option v-for="option in options" :value="option.value">
-    {{ option.text }}
-  </option>
-</select>
-
+    <h2 class="infoTitle">
+        <select v-model="selected" @change="fetchWeather">
+            <option v-for="option in options" :value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        の天気
+    </h2>
     <p class="infoDate">{{INFO_DATE}}</p>
     <ul v-if="weatherItem" class="infoList">
         <li class="infoListItem">{{MAIN_MESSAGE}}</li>
@@ -16,7 +16,7 @@
         <li class="infoListItem">{{HUMIDITY_MESSAGE}}</li>
         <li class="infoListItem">{{WIND_MESSAGE}}</li>
         <li class="infoListItem">アイス</li>
-        <li class="infoListItem"><nuxt-link to="/details">もっと詳しく！</nuxt-link></li>
+        <li class="infoListItem"><nuxt-link class="gnavLink" to="/details">もっと詳しく▶︎</nuxt-link></li>
     </ul>
 </section>
 
@@ -34,8 +34,8 @@ export default {
             options: [
                 { text: '北海道', value: 'Hokkaido' },
                 { text: '宮城', value: 'Miyagi' },
-                { text: '新潟', value: 'Niigata' },
                 { text: '東京', value: 'Tokyo' },
+                { text: '新潟', value: 'Niigata' },
                 { text: '石川', value: 'Ishikawa' },
                 { text: '愛知', value: 'Aichi' },
                 { text: '大阪', value: 'Osaka' },
@@ -148,6 +148,12 @@ export default {
     order: 2;
     text-align: center;
     font-size: 18px;
+    & select {
+        background: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 }
 .infoDate{
     order: 1;
@@ -190,6 +196,9 @@ export default {
         }
         .infoTitle{
             font-size: 20px;
+            & select {
+                font-size: 16px;
+            }
         }
         .infoDate{
             font-size: 16px;
@@ -220,6 +229,9 @@ export default {
         }
         .infoTitle{
             font-size: 14px;
+            & select {
+                font-size: 14px;
+            }
         }
         .infoDate{
             font-size: 10px;
@@ -255,6 +267,9 @@ export default {
         }
         .infoTitle{
             font-size: 12px;
+            & select {
+                font-size: 12px;
+            }
         }
         .infoList{
             margin-top: 8px;
