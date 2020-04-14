@@ -1,6 +1,6 @@
 <template>
 
-<div class="wrapper" :class="[TIME_VIEW, MAIN_VIEW]">
+<div class="viewArea" :class="[TIME_VIEW, MAIN_VIEW]">
     <div class="clouds" :class="MAIN_VIEW">
         <fa class="cloud" :icon="faCloud" />
         <fa class="cloud" :icon="faCloud" />
@@ -70,13 +70,13 @@ export default {
 
 <style scoped>
 
-    .wrapper {
+    .viewArea {
         overflow: hidden;
         width: 600px;
         padding: 200px 0 100px;
-        margin: 0 auto;
+        margin: 0 10px;
         position: relative;
-        &:after{
+        &:after {
             content: '';
             display: block;
             width: 100%;
@@ -126,6 +126,12 @@ export default {
         & img {
             display: block;
             width: 100%;
+        }
+    }
+
+    @media screen and (max-width:480px) {
+        .viewArea {
+            margin-bottom: 55px;
         }
     }
 

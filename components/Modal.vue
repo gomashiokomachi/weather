@@ -126,19 +126,22 @@ export default {
     }
   }
   .modalList {
+    overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     list-style: none;
     background: white;
-    max-width: 960px;
-    padding: 50px 30px;
+    max-width: 520px;
+    max-height: 610px;
+    padding: 30px 100px;
     border-top: 50px #B0BBD9 solid;
     border-radius: 10px;
     position: absolute;
     top: 100px;
     left: 30px;
     right: 30px;
+    bottom: 30px;
     margin: auto;
     z-index: 200;
   }

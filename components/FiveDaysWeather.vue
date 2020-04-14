@@ -1,18 +1,22 @@
 <template>
 
-<section class="forecastArea">
-    <h2 class="forecastTitle">5日間予報</h2>
-    <ol class="forecastList">
-        <li v-for="listArray in FORECAST_LIST" class="forecastItem">
-            <span class="forecastDate"># {{FORECAST_DATE[ listArray ]}}</span>
-            <fa v-if="MAIN_FORECAST[ listArray ] === 'Clear'" class="forecastIcon" :icon="faSun" />
-            <fa v-if="MAIN_FORECAST[ listArray ] === 'Clouds'" class="forecastIcon" :icon="faCloud" />
-            <fa v-if="MAIN_FORECAST[ listArray ] === 'Rain'" class="forecastIcon" :icon="faCloudShowersHeavy" />
-            <fa v-if="MAIN_FORECAST[ listArray ] === 'Snow'" class="forecastIcon" :icon="faSnowflake" />
-            <fa v-if="MAIN_FORECAST[ listArray ] === 'Mist'" class="forecastIcon" :icon="faSmog" />
-        </li>
-    </ol>
-</section>
+<div class="forecastWrapper">
+    <input type="checkbox" id="toggle">
+    <label for="toggle">Forecast</label>
+    <section class="forecastArea">
+        <h2 class="forecastTitle">5日間予報</h2>
+        <ol class="forecastList">
+            <li v-for="listArray in FORECAST_LIST" class="forecastItem">
+                <span class="forecastDate"># {{FORECAST_DATE[ listArray ]}}</span>
+                <fa v-if="MAIN_FORECAST[ listArray ] === 'Clear'" class="forecastIcon" :icon="faSun" />
+                <fa v-if="MAIN_FORECAST[ listArray ] === 'Clouds'" class="forecastIcon" :icon="faCloud" />
+                <fa v-if="MAIN_FORECAST[ listArray ] === 'Rain'" class="forecastIcon" :icon="faCloudShowersHeavy" />
+                <fa v-if="MAIN_FORECAST[ listArray ] === 'Snow'" class="forecastIcon" :icon="faSnowflake" />
+                <fa v-if="MAIN_FORECAST[ listArray ] === 'Mist'" class="forecastIcon" :icon="faSmog" />
+            </li>
+        </ol>
+    </section>
+</div>
 
 </template>
 
@@ -73,34 +77,80 @@ export default {
 
 <style scoped>
 
-    .forecastArea{
+    .forecastWrapper {
+        margin: 100px auto auto;
+        & label {
+            display: none;
+            transform: rotate(-90deg);
+            background: #f3f3f3;
+            padding: 10px 20px 20px;
+            border-radius: 10px 10px 0 0;
+            font-size: 20px;
+            position: fixed;
+            top: 82px;
+            right: -50px;
+            cursor: pointer;
+            transition: 1s;
+            z-index: 30;
+        }
+        & input {
+            display: none;
+        }
+    }
+    .forecastArea {
         background: #f3f3f3;
         border-radius: 10px;
         padding: 10px 20px 20px;
-        margin: 100px auto auto;
     }
-    .forecastTitle{
+    .forecastTitle {
         padding: 8px 10px;
         font-size: 20px;
         border-bottom: 1px gray solid;
     }
-    .forecastList{
+    .forecastList {
         list-style: none;
     }
-    .forecastItem{
+    .forecastItem {
         padding: 10px;
         border-bottom: 1px gray solid;
     }
-    .forecastDate{
+    .forecastDate {
         display: inline-block;
         vertical-align: top;
         width: 100px;
         font-size: 18px;
     }
-    .forecastIcon{
+    .forecastIcon {
         width: 80px;
         font-size: 36px;
         color: #4b4b4b;
+    }
+
+    @media screen and (max-width:768px) {
+        .forecastWrapper {
+            & label {
+                display: block;
+            }
+            & input:checked {
+                & ~ label {
+                    right: 200px;
+                    transition: 1s;
+                }
+                & ~ .forecastArea {
+                    right: 0;
+                    transition: 1s;
+                }
+            }
+        }
+        .forecastArea {
+            border-radius: 0;
+            margin-top: 0;
+            position: fixed;
+            top: 50px;
+            right: -250px;
+            transition: 1s;
+            z-index: 30;
+        }
     }
 
 </style>

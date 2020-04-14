@@ -28,6 +28,7 @@ export default {
 
     .container{
         display: flex;
+        margin: 0 10px;
         position: relative;
         &::before{
             content: '';
