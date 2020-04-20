@@ -1,7 +1,7 @@
 <template>
 
 <div class="viewArea" :class="[TIME_VIEW, MAIN_VIEW]">
-  <div class="clouds" :class="MAIN_VIEW">
+  <div class="clouds" :class="[MAIN_VIEW, WIND_VIEW]">
     <fa class="cloud" :icon="faCloud" />
     <fa class="cloud" :icon="faCloud" />
     <fa class="cloud" :icon="faCloud" />
@@ -40,6 +40,16 @@ export default {
     },
     MAIN_VIEW() {
       return this.weatherItem && this.weatherItem.weather[0].main
+    },
+    WIND_VIEW() {
+      const speed = this.weatherItem && this.weatherItem.wind.speed
+      if(speed > 10) {
+        return 'fast'
+      } else if(speed > 3) {
+        return 'normal'
+      } else {
+        return 'slow'
+      }
     },
     faCloud: () => faCloud,
     ...mapState({
@@ -80,9 +90,34 @@ export default {
     &.Clouds,
     &.Rain {
       & .cloud {
-        font-size: 250px;
         color: #626a73;
-        right: -55%;
+      }
+    }
+    &.fast {
+      & .cloud {
+        animation-duration: 20s;
+        &:nth-of-type(2) {
+          animation-delay: 7s;
+        }
+        &:nth-of-type(3) {
+          animation-delay: 12s;
+        }
+      }
+    }
+    &.normal {
+      & .cloud {
+        animation-duration: 40s;
+        &:nth-of-type(2) {
+          animation-delay: 13s;
+        }
+        &:nth-of-type(3) {
+          animation-delay: 23s;
+        }
+      }
+    }
+    &.slow {
+      & .cloud {
+        animation-duration: 60s;
       }
     }
     & .cloud {
@@ -90,7 +125,7 @@ export default {
       color: white;
       position: absolute;
       right: -25%;
-      animation: cloud 50s linear infinite;
+      animation: cloud linear infinite;
       z-index: 10;
       &:nth-of-type(1) {
         top: 10px;
@@ -101,7 +136,7 @@ export default {
       }
       &:nth-of-type(3) {
         top: 50px;
-        animation-delay: 30s;
+        animation-delay: 35s;
       }
     }
   }
