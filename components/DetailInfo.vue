@@ -4,7 +4,7 @@
   <h2 class="infoTitle">天気の詳細</h2>
   <p class="infoDate">{{DETAIL_DATE}}</p>
   <ul class="infoList">
-    <li class="infoListItem"><fa class="infoIcon" :icon="faMapMarkerAlt" />{{this.weatherItem && this.weatherItem.name}}</li>
+    <li class="infoListItem"><fa class="infoIcon" :icon="faMapMarkerAlt" />{{TARGET_CITY}}</li>
     <li class="infoListItem"><fa class="infoIcon" :icon="faSun" />{{MAIN_INFO}}</li>
     <li class="infoListItem"><fa class="infoIcon" :icon="faTint" />{{HUMIDITY_INFO}}%</li>
     <li class="infoListItem"><fa class="infoIcon" :icon="faWind" />{{WIND_INFO}}m/s</li>
@@ -25,8 +25,14 @@ import { faSun } from '@fortawesome/free-solid-svg-icons'
 import { faTint } from '@fortawesome/free-solid-svg-icons'
 import { faWind } from '@fortawesome/free-solid-svg-icons'
 import Chart from '~/components/Chart.vue'
+import { cities } from '~/utils/const'
 
 export default {
+  data() {
+    return {
+      cities
+    }
+  },
   components: {
     Chart
   },
@@ -34,6 +40,11 @@ export default {
     DETAIL_DATE: () => {
       moment.locale('ja')
       return moment().format('M月D日 (dd)')
+    },
+    TARGET_CITY() {
+      const id = String(this.weatherItem && this.weatherItem.id)
+      const target = cities.find(city => city.value === id)
+      return target && target.text
     },
     MAIN_INFO() {
       let main = this.weatherItem && this.weatherItem.weather[0].main

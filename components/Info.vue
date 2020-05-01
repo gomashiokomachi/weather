@@ -3,8 +3,8 @@
 <section class="infoArea">
   <h2 class="infoTitle">
     <select v-model="selected" @change="fetchWeather">
-      <option v-for="option in options" :value="option.value">
-        {{ option.text }}
+      <option v-for="city in mainCities" :value="city.value">
+        {{ city.text }}
       </option>
     </select>
     の天気
@@ -26,25 +26,13 @@
 
 import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
+import { mainCities } from '~/utils/const'
 
 export default {
   data () {
     return {
-      selected: 'Tokyo',
-      options: [
-        { text: '北海道', value: 'Hokkaido' },
-        { text: '宮城', value: 'Miyagi' },
-        { text: '東京', value: 'Tokyo' },
-        { text: '新潟', value: 'Niigata' },
-        { text: '石川', value: 'Ishikawa' },
-        { text: '愛知', value: 'Aichi' },
-        { text: '大阪', value: 'Osaka' },
-        { text: '広島', value: 'Hiroshima' },
-        { text: '高知', value: 'Kochi' },
-        { text: '福岡', value: 'Fukuoka' },
-        { text: '鹿児島', value: 'Kagoshima' },
-        { text: '沖縄', value: 'Okinawa' }
-      ]
+      selected: '1850144',
+      mainCities
     }
   },
   computed: {
@@ -52,15 +40,15 @@ export default {
     MAIN_MESSAGE() {
       let main = this.weatherItem && this.weatherItem.weather[0].main
       if(main === 'Clear') {
-        return 'はれ'
+        return '晴れてる！'
       } else if(main === 'Clouds') {
-        return 'くもり'
+        return 'くもりー。'
       } else if(main === 'Rain') {
-        return 'あめ'
+        return '雨降ってるなぁ'
       } else if(main === 'Snow') {
-        return 'ゆき'
+        return '雪だ！'
       } else if(main === 'Mist') {
-        return 'きり'
+        return 'きり...(ﾟﾛﾟ;'
       } else {
         return main
       }
@@ -68,33 +56,33 @@ export default {
     TEMP_MESSAGE() {
       const temp = this.weatherItem && this.weatherItem.main.temp
       if(temp > 28) {
-        return '暑い'
+        return 'あつーい！'
       } else if(temp > 23) {
-        return 'ちょうど良い'
+        return '良い感じの気温〜'
       } else if(temp > 15) {
-        return '肌寒い'
+        return '肌寒い...'
       } else {
-        return '寒い'
+        return 'さむっ'
       }
     },
     HUMIDITY_MESSAGE() {
       const humidity = this.weatherItem && this.weatherItem.main.humidity
       if(humidity > 70) {
-        return '湿度高い'
+        return '湿気やば'
       } else if(humidity > 40) {
-        return '湿度普通'
+        return '湿度よき！'
       } else {
-        return '湿度低い'
+        return '肌カサカサ(>_<)'
       }
     },
     WIND_MESSAGE() {
       const speed = this.weatherItem && this.weatherItem.wind.speed
       if(speed > 10) {
-        return '風強い！'
+        return '風つよ！'
       } else if(speed > 3) {
-        return '風普通'
+        return '良い風だー'
       } else {
-        return '風弱い'
+        return 'そよそよ〜'
       }
     },
     ...mapState({
