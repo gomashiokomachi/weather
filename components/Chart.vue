@@ -51,30 +51,20 @@ export default {
     }
   },
   computed: {
+    forecastItemList(){
+      return this.forecastItem ? this.forecastItem.list.slice(0, 8) : []
+    },
     THREEHOURS_TIME() {
-      const timeArray = []
-      for (let i=0; i<8; i++) {
-        const dt = this.forecastItem && this.forecastItem.list[i].dt_txt
-        const newDt = new String(dt)
-        timeArray.push(newDt.substr( 11, 2 )+'時')
-      } return timeArray
+      return this.forecastItemList.map(({dt_txt}) => {
+        const newDt = new String(dt_txt)
+        return newDt.substr( 11, 2 )+'時'
+      })
     },
     THREEHOURS_TEMP() {
-      const tempArray = []
-      for (let i=0; i<8; i++) {
-        tempArray.push(this.forecastItem && this.forecastItem.list[i].main.temp)
-      } return tempArray
+      return this.forecastItemList.map(({main}) => main.temp)
     },
     THREEHOURS_RAIN() {
-      const rainArray = []
-      for (let i=0; i<8; i++) {
-        const rain = this.forecastItem && this.forecastItem.list[i].rain
-        if(rain){
-          rainArray.push(rain['3h'])
-        } else {
-          rainArray.push(0)
-        }
-      } return rainArray
+      return this.forecastItemList.map(({rain}) => rain ? rain['3h'] : 0)
     },
     chartData() {
       return {

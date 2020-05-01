@@ -39,16 +39,13 @@ export default {
         dateArray.push(moment().add(i, 'days').format('M月D日'))
       } return dateArray
     },
+    forecastItemList() {
+      return this.forecastItem ? this.forecastItem.list : []
+    },
     MAIN_FORECAST() {
-      const mainArray = []
-      for (let i=0; i<36; i++) {
-        const main = this.forecastItem && this.forecastItem.list[i].weather[0].main
-        const list = this.forecastItem && this.forecastItem.list[i].dt_txt
-        const newList = new String(list)
-        if(newList.substr( 11, 2 ) === "15"){
-          mainArray.push(main)
-        }
-      } return mainArray
+      return this.forecastItemList
+        .filter(({dt_txt}) => dt_txt.substr( 11, 2 ) === "15")
+        .map(({weather}) => weather[0].main)
     },
     FORECAST_LIST: () => {
       const listArray = [0, 1, 2, 3, 4]
