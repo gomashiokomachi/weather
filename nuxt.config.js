@@ -66,7 +66,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    publicPath: '/weather/dist/',
     /*
     ** You can extend webpack config here
     */
