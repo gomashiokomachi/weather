@@ -15,7 +15,7 @@
     <li class="infoListItem">{{TEMP_MESSAGE}}</li>
     <li class="infoListItem">{{HUMIDITY_MESSAGE}}</li>
     <li class="infoListItem">{{WIND_MESSAGE}}</li>
-    <li class="infoListItem">アイス</li>
+    <li class="infoListItem">アイス食べたい</li>
     <li class="infoListItem"><nuxt-link class="gnavLink" to="/details">もっと詳しく▶︎</nuxt-link></li>
   </ul>
 </section>
