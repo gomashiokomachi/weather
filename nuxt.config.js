@@ -1,9 +1,3 @@
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/weather/dist/'
-  }
-} : {}
-
 module.exports = {
   mode: 'spa',
   /*
@@ -87,5 +81,7 @@ module.exports = {
       }
     }
   },
-  ...routerBase
+  generate: {
+    fallback: true
+  }
 }
